@@ -1,19 +1,21 @@
 ﻿"use strict";
 function run(callback) {
   const express = require("express");
-  const cors = require('cors');
+  const cors = require("cors");
 
   // Constants
-  const PORT = process.env.PORT || 4000;
+  const PORT = process.env.PORT || 8080;
   const HOST = "0.0.0.0";
 
   // App
-  
+
   const app = express();
+  app.use(express.static(process.cwd()+"/frontend/dist/"));
   app.use(cors());
   app.use(express.json());
-  app.get("/", (req, res) => {
-    res.send("Hello FS2023 DevOps Course!!! Azure Test!");
+
+  app.get('/', (req,res) => {
+    res.sendFile(process.cwd()+"/frontend/dist/index.html")
   });
 
   app.post("/countdown", (req, res) => {
@@ -34,7 +36,9 @@ function run(callback) {
   // start server
   const server = app.listen(PORT, HOST, function () {
     console.log("Server listening on port " + PORT);
-    callback();
+    if (typeof callback === "function") {
+      callback();
+    }
   });
 
   server.on("close", function () {
