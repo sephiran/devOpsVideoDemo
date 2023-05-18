@@ -1,0 +1,8 @@
+﻿<div class="card mt-4">
+  <h4 class="card-header py-3">Enter date and time of your Event!</h4>
+  <div class="card-body">
+    <input [(ngModel)]="dateTime" type="datetime-local">
+    <button (click)="startCountdown()">Start Countdown</button>
+    <p *ngIf="seconds">{{ message }}</p>
+  </div>
+</div>
