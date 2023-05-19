@@ -15,7 +15,12 @@ function run(callback) {
   app.use(express.json());
 
   app.get('/', (req,res) => {
-    res.sendFile(process.cwd()+"/frontend/dist/index.html")
+    console.log("Mello");
+    if (process.env.NODE_ENV != "test") {
+      res.sendFile(process.cwd()+"/frontend/dist/index.html");
+    } else {
+      res.send('No index file found!');
+    }
   });
 
   app.post("/countdown", (req, res) => {
