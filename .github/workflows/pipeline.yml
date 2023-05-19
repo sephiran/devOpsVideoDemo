@@ -18,6 +18,7 @@ jobs:
       - run: cd backend && npm ci
       
   test-backend:
+    needs: build-backend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -39,6 +40,7 @@ jobs:
       - run: cd frontend && npm run build
           
   buildpush-docker:
+    needs: [build-backend, test-backend, build-frontend]
     runs-on: ubuntu-latest
     steps:
       -
@@ -62,7 +64,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devopsvideodemo:${{ github.run_number }}
   deploy:
-    needs: build
+    needs: buildpush-docker
     runs-on: ubuntu-latest
     steps:
       -
