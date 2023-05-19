@@ -29,7 +29,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devOpsVideoDemo:${{ github.run_number }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devopsvideodemo:${{ github.run_number }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -39,5 +39,5 @@ jobs:
           uses: azure/webapps-deploy@v2
           with:
             publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-            app-name: sephiran-app-helloworld
-            images: ${{ secrets.DOCKERHUB_USERNAME }}/devOpsVideoDemo:${{ github.run_number }}
+            app-name: devopsvideodemo-app
+            images: ${{ secrets.DOCKERHUB_USERNAME }}/devopsvideodemo:${{ github.run_number }}
