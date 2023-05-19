@@ -30,7 +30,7 @@ jobs:
       - run: cd frontend && npm run build
           
   buildpush-docker:
-    needs: [build-backend, test-backend, build-frontend]
+    needs: [build-test-backend, build-frontend]
     runs-on: ubuntu-latest
     steps:
       -
