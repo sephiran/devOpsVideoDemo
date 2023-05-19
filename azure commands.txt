@@ -1,0 +1,12 @@
+az login
+
+az group create --name devopsvideodemo-resource --location westeurope
+
+az appservice plan create --name devopsvideodemo-plan --resource-group devopsvideodemo-resource --sku F1 --is-linux
+
+az webapp create --resource-group devopsvideodemo-resource --plan devopsvideodemo-plan --name devopsvideodemo-app --deployment-container-image-name sephiran/devopsvideodemo:0.0.1
+
+az webapp config appsettings set --resource-group devopsvideodemo-resource --name devopsvideodemo-app --settings WEBSITES_PORT=8080
+
+
+

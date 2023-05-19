@@ -1,0 +1,5 @@
+docker build -t sephiran/devops-video-demo:0.0.1 .
+
+docker push sephiran/devops-video-demo:0.0.1
+
+docker run -d --name devops-demo-video -p 9003:8080 sephiran/devops-video-demo:0.0.1
