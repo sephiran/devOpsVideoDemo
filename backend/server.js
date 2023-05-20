@@ -15,7 +15,6 @@ function run(callback) {
   app.use(express.json());
 
   app.get('/', (req,res) => {
-    console.log("Mello");
     if (process.env.NODE_ENV != "test") {
       res.sendFile(process.cwd()+"/frontend/dist/index.html");
     } else {
